@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ recipe.name }}</h2>
+{% if recipe.estimated_minutes %}
+<p>예상 조리 시간: 약 {{ recipe.estimated_minutes }}분</p>
+{% endif %}
+
+<h3>재료</h3>
+<ul>
+  {% for ingredient in recipe.have_ingredients %}
+  <li>{{ ingredient }} (보유)</li>
+  {% endfor %}
+  {% for ingredient in recipe.missing_ingredients %}
+  <li>{{ ingredient }} (추가 필요)</li>
+  {% endfor %}
+</ul>
+
+<h3>조리 순서</h3>
+<ol>
+  {% for step in recipe.steps %}
+  <li>{{ step }}</li>
+  {% endfor %}
+</ol>
+
+<form action="{{ url_for('delete_recipe', recipe_id=recipe.id) }}" method="post">
+  <button type="submit">삭제</button>
+</form>
+<a href="{{ url_for('my_recipes') }}">내 레시피 목록으로</a>
+{% endblock %}

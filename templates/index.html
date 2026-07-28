@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<p>냉장고 사진을 업로드하면 안에 있는 식재료를 인식해드려요.</p>
+<form action="{{ url_for('recognize') }}" method="post" enctype="multipart/form-data" class="loading-form">
+  <input type="file" name="image" accept="image/png, image/jpeg" required>
+  <button type="submit" data-loading-text="재료 인식 중...">재료 인식하기</button>
+</form>
+{% endblock %}

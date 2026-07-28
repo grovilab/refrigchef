@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<p><a href="{{ url_for('options') }}">&larr; 재료/옵션 다시 확인하기</a></p>
+<p>추천 레시피입니다. 마음에 드는 요리를 선택해주세요.</p>
+
+{% if recipes %}
+<div class="recipe-cards">
+  {% for recipe in recipes %}
+  <div class="recipe-card">
+    <h3>{{ recipe.name }}</h3>
+    {% if recipe.estimated_minutes %}
+    <p>예상 조리 시간: 약 {{ recipe.estimated_minutes }}분</p>
+    {% endif %}
+    {% if recipe.missing_ingredients %}
+    <p>추가로 필요한 재료: {{ recipe.missing_ingredients | join(', ') }}</p>
+    {% else %}
+    <p>보유 재료만으로 조리 가능</p>
+    {% endif %}
+    <a href="{{ url_for('recipe_detail', index=loop.index0) }}">
+      <button type="button">자세히 보기</button>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<details>
+  <summary>모델 원본 응답 보기</summary>
+  <pre>{{ raw_text }}</pre>
+</details>
+<a href="{{ url_for('index') }}">처음으로 돌아가기</a>
+{% endif %}
+{% endblock %}

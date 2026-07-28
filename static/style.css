@@ -1,0 +1,255 @@
+:root {
+  --accent: #2f7d3a;
+  --accent-dark: #256330;
+  --border: #e2e2df;
+  --bg: #f4f4f1;
+  --text: #222;
+  --text-muted: #666;
+  --radius: 10px;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 24px;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+h1 a {
+  color: inherit;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+h2, h3 {
+  color: var(--text);
+}
+
+p {
+  color: var(--text);
+}
+
+a {
+  color: var(--accent);
+}
+
+a:hover {
+  color: var(--accent-dark);
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  font-size: 0.9rem;
+  margin: 10px 0 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.nav a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+.flash {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+}
+
+.flash li {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border-left: 3px solid #d9534f;
+  background: #fdecec;
+  color: #a12b2b;
+}
+
+.flash li + li {
+  margin-top: 6px;
+}
+
+.flash li.flash-success {
+  background: #eaf6ec;
+  color: #1e5e2a;
+  border-left-color: var(--accent);
+}
+
+form {
+  margin-top: 16px;
+}
+
+label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 10px 0 4px;
+}
+
+#ingredient-list {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 0;
+}
+
+#ingredient-list li {
+  padding: 6px 0;
+}
+
+.add-row {
+  display: flex;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.add-row input {
+  flex: 1;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="file"],
+select {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #d5d5d1;
+  background: #fff;
+  font: inherit;
+  color: var(--text);
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+button {
+  padding: 9px 16px;
+  border-radius: 8px;
+  border: 1px solid #d5d5d1;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.05s ease;
+}
+
+button:hover {
+  background: #f2f2ef;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button[type="submit"] {
+  background: var(--accent);
+  color: white;
+  border: none;
+  margin-top: 8px;
+}
+
+button[type="submit"]:hover {
+  background: var(--accent-dark);
+}
+
+button:disabled {
+  opacity: 0.65;
+  cursor: default;
+  transform: none;
+}
+
+.spinner {
+  display: inline-block;
+  width: 0.85em;
+  height: 0.85em;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-top-color: #fff;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: -0.15em;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+pre {
+  background: #f0f0ee;
+  padding: 12px;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.recipe-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.recipe-card,
+.saved-recipe-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.recipe-card:hover {
+  border-color: #cfcfca;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.recipe-card h3,
+.saved-recipe-card h3 {
+  margin: 0 0 6px;
+}
+
+.recipe-card p,
+.saved-recipe-card p {
+  margin: 4px 0;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+.saved-recipe-card {
+  margin-bottom: 12px;
+}
+
+.saved-recipe-card form {
+  display: inline;
+  margin-top: 8px;
+}
+
+.recipe-nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 0;
+  font-size: 0.92rem;
+}

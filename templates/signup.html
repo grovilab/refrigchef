@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>회원가입</h2>
+<form action="{{ url_for('signup') }}" method="post">
+  <label>
+    닉네임
+    <input type="text" name="nickname" required>
+  </label>
+  <br>
+  <label>
+    이메일
+    <input type="email" name="email" required>
+  </label>
+  <br>
+  <label>
+    비밀번호
+    <input type="password" name="password" required minlength="6">
+  </label>
+  <br>
+  <button type="submit">가입하기</button>
+</form>
+<a href="{{ url_for('login') }}">이미 계정이 있으신가요? 로그인</a>
+{% endblock %}

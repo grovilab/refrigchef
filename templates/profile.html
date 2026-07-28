@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>프로필 설정</h2>
+<form action="{{ url_for('profile') }}" method="post">
+  <label>
+    닉네임
+    <input type="text" name="nickname" value="{{ profile.nickname or '' }}" required>
+  </label>
+  <br>
+  <label>
+    알레르기 재료 (쉼표로 구분)
+    <input type="text" name="allergies" value="{{ profile.allergies | join(', ') }}" placeholder="예: 땅콩, 새우">
+  </label>
+  <br>
+  <label>
+    비선호 재료 (쉼표로 구분)
+    <input type="text" name="disliked_ingredients" value="{{ profile.disliked_ingredients | join(', ') }}" placeholder="예: 오이, 가지">
+  </label>
+  <br>
+  <button type="submit">저장</button>
+</form>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>로그인</h2>
+<form action="{{ url_for('login') }}" method="post">
+  <label>
+    이메일
+    <input type="email" name="email" required>
+  </label>
+  <br>
+  <label>
+    비밀번호
+    <input type="password" name="password" required>
+  </label>
+  <br>
+  <button type="submit">로그인</button>
+</form>
+<a href="{{ url_for('signup') }}">계정이 없으신가요? 회원가입</a>
+{% endblock %}

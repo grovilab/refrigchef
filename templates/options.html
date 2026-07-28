@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<p>확정된 재료로 레시피를 추천받아요.</p>
+<ul>
+  {% for ingredient in ingredients %}
+  <li>{{ ingredient }}</li>
+  {% endfor %}
+</ul>
+
+<form action="{{ url_for('recipes') }}" method="post" class="loading-form">
+  <label>
+    인분 수
+    <input type="number" name="servings" value="2" min="1" max="10">
+  </label>
+  <br>
+  <label>
+    조리시간 제한
+    <select name="time_limit">
+      <option value="">제한 없음</option>
+      <option value="15">15분 이내</option>
+      <option value="30">30분 이내</option>
+      <option value="60">60분 이내</option>
+    </select>
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="spicy">
+    매운맛 선호
+  </label>
+  <br>
+  <button type="submit" data-loading-text="레시피 생성 중...">레시피 추천받기</button>
+</form>
+{% endblock %}

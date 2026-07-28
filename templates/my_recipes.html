@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+{% if session.get('recipes') %}
+<p><a href="{{ url_for('recipes') }}">&larr; 추천 레시피 목록으로 돌아가기</a></p>
+{% endif %}
+<h2>내 레시피</h2>
+{% if recipes %}
+  {% for recipe in recipes %}
+  <div class="saved-recipe-card">
+    <h3><a href="{{ url_for('my_recipe_detail', recipe_id=recipe.id) }}">{{ recipe.name }}</a></h3>
+    {% if recipe.estimated_minutes %}
+    <p>예상 조리 시간: 약 {{ recipe.estimated_minutes }}분</p>
+    {% endif %}
+    <form action="{{ url_for('delete_recipe', recipe_id=recipe.id) }}" method="post">
+      <button type="submit">삭제</button>
+    </form>
+  </div>
+  {% endfor %}
+{% else %}
+<p>아직 저장된 레시피가 없습니다.</p>
+{% endif %}
+{% endblock %}

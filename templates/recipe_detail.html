@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<p><a href="{{ url_for('recipes') }}">&larr; 레시피 목록으로 돌아가기</a> ({{ index + 1 }}/{{ total }})</p>
+<h2>{{ recipe.name }}</h2>
+{% if recipe.estimated_minutes %}
+<p>예상 조리 시간: 약 {{ recipe.estimated_minutes }}분</p>
+{% endif %}
+
+<h3>재료</h3>
+<ul>
+  {% for ingredient in recipe.have_ingredients %}
+  <li>{{ ingredient }} (보유)</li>
+  {% endfor %}
+  {% for ingredient in recipe.missing_ingredients %}
+  <li>{{ ingredient }} (추가 필요)</li>
+  {% endfor %}
+</ul>
+
+<h3>조리 순서</h3>
+<ol>
+  {% for step in recipe.steps %}
+  <li>{{ step }}</li>
+  {% endfor %}
+</ol>
+
+<form action="{{ url_for('save_recipe', index=index) }}" method="post">
+  <button type="submit">이 레시피 저장하기</button>
+</form>
+
+<p class="recipe-nav">
+  {% if index > 0 %}
+  <a href="{{ url_for('recipe_detail', index=index - 1) }}">&larr; 이전 레시피</a>
+  {% endif %}
+  {% if index + 1 < total %}
+  <a href="{{ url_for('recipe_detail', index=index + 1) }}">다음 레시피 &rarr;</a>
+  {% endif %}
+</p>
+
+<a href="{{ url_for('recipes') }}">레시피 목록으로 돌아가기</a> ·
+<a href="{{ url_for('index') }}">처음으로 돌아가기</a>
+{% endblock %}

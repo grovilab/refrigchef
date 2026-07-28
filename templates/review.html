@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+<p>인식된 재료 목록입니다. 잘못된 항목은 체크 해제하고, 빠진 재료는 추가해주세요.</p>
+
+<form action="{{ url_for('confirm') }}" method="post">
+  <ul id="ingredient-list">
+    {% for ingredient in ingredients %}
+    <li>
+      <label>
+        <input type="checkbox" name="ingredient" value="{{ ingredient }}" checked>
+        {{ ingredient }}
+      </label>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <div class="add-row">
+    <input type="text" id="new-ingredient" placeholder="추가할 재료 입력 (예: 당근)">
+    <button type="button" id="add-btn">재료 추가</button>
+  </div>
+
+  <button type="submit">확정하고 레시피 추천받기</button>
+</form>
+
+{% if not ingredients %}
+<details>
+  <summary>모델 원본 응답 보기</summary>
+  <pre>{{ raw_text }}</pre>
+</details>
+{% endif %}
+
+<script>
+  document.getElementById("add-btn").addEventListener("click", function () {
+    var input = document.getElementById("new-ingredient");
+    var name = input.value.trim();
+    if (!name) return;
+
+    var li = document.createElement("li");
+    var label = document.createElement("label");
+    var checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.name = "ingredient";
+    checkbox.value = name;
+    checkbox.checked = true;
+
+    label.appendChild(checkbox);
+    label.appendChild(document.createTextNode(" " + name));
+    li.appendChild(label);
+    document.getElementById("ingredient-list").appendChild(li);
+
+    input.value = "";
+    input.focus();
+  });
+</script>
+{% endblock %}
